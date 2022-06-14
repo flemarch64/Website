@@ -10,20 +10,19 @@ My portforlio
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <div class="w3-top">
   <div class="w3-bar w3-cyan w3-wide w3-padding w3-card">
-  <a href="#home" class="w3-blue w3-bar-item w3-button"><b>Reduan</b> Asbai</a>
+  <a href="#home" class="w3-blue w3-bar-item w3-button"><b>Fabian</b> Lemarchand</a>
     <!-- Float links to the right. Hide them on small screens -->
     <div class="w3-right w3-hide-small">
       <a href="#projects" class="w3-bar-item w3-button">Projects</a>
-      <a href="#about" class="w3-bar-item w3-button">About</a>
+      <a href="#About" class="w3-bar-item w3-button">About</a>
       <a href="#contact" class="w3-bar-item w3-button">Contact</a>
 	</div>
   </div>
 </div>
 <!-- Header -->
 <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
-  <img class="w3-image" src="/w3images/architect.jpg" alt="Architecture" width="1500" height="800">
+  <img class="w3-image" src="//cfd_image.jpg" alt="Architecture" width="1920" height="1080">
   <div class="w3-display-middle w3-margin-top w3-center">
-    <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>BR</b></span> <span class="w3-hide-small w3-text-light-grey">Architects</span></h1>
   </div>
 </header>
 
@@ -33,53 +32,74 @@ background:rgba(175, 247, 246, 0.8);
 }
 </style>
 
-<P>
-<B>Informática</B>
-</P>
-<P>
-<h3><I> About</I></h3>
-This website is about presenting an engineering project
-</P>
-<HR WIDTH=80%>
-<PRE>
-This formatted text is cool
-</PRE>
-<h1>
-Fluid mechanics
-</h1>
-<h2>
-<u>Cabezera1</u>
-</h2>
-<h2>
-Cabezera2
-</h2>
-<h2>
-Cabezera3
-</h2>
-<ul>
-<li>1
-<li>2
-<li>otro
-</ul>
-<ol>
-<li>The first project
-<li>The second project
-<li>The third project
-<li>The fourth project
-<li>The fifth project
-</ol>
+<div class="w3-container w3-padding-32" id="About">
+    <h3 class="w3-border-bottom w3-border-black w3-padding-16">About</h3>
+	
+    <p>This website presents my main projects in the field of computational fluid dynamics. The projects cover various fields, external flow aerodynamics and internal flow inside tubes.
+    </p>
+ </div>
+ 
+ <div class="w3-container w3-padding-32" id="contact">
+    <h3 class="w3-border-bottom w3-border-black w3-padding-5">Contact</h3>
+	
+    <p>flemarchand@unav.es
+    </p>
+ </div>
 
 
-<TABLE style="width:100%" BORDER=2>
 
-<TR><TD>11</TD><TD>12</TD></TR>
+<SCRIPT>
+	var P0;
+	var t;
+	function P(P0,t){
+	return P0*(1+Math.sin(50*2*Math.PI*t));
+	}
+	function tableCreate(row, col){
+    let body = document.body;
+    let tbl  = document.createElement('table');
+	tbl.style.width  = '200px';
+    tbl.style.border = '1px solid black';
+    tbl.style.textAlign = 'center';
+    for(let i = 0; i < row; i++){
+        let tr = tbl.insertRow();
+        for(let j = 0; j < col; j++){
+                let td = tr.insertCell();
+                td.appendChild(document.createTextNode(P(ucfrom,1e-4)));
+                td.style.border = '1px solid black';
+            }     
+    }
+    body.appendChild(tbl);
+	}
 
-<TR><TD>21</TD><TD>22</TD></TR>
-<TR><TD colspan="2">31</TD></TR>
-</TABLE>
-<footer class="black">
-  <button class="w3-button w3-blue w3-padding-large w3-margin-bottom">Next »</button>
-  
-</footer>
+</SCRIPT>
+
+<div class="w3-container w3-padding-32" id="projects">
+    <h3 class="w3-border-bottom w3-border-black w3-padding-16"><I>Project 1: the potential flow around a cylinder profile</I></h3>
+    <p>This simulation consists in reproducing the flow around a cylinder profile. The pressure and velocity fields are modelled. 
+    </p>
+	<p>
+	The following video explains briefly the philosophy behind the external flow modelling: 
+	</p>
+	<A HREF="https://unav.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=30f08ef4-9e9e-49f1-8326-aeb4008f53eb"><font color="blue">Video</font></A>
+	<h3 class="w3-border-bottom w3-border-black w3-padding-16"><I>Project 2: the flow inside a duct: wave reflexion</I></h3>
+	<p>This simulation consists in modelling the flow indide a cylindrical duct. A wave is modelled with an entry and exit sinusoidal disphased pressure signal.
+	The wave has the following form:
+	<math>P(t)=P<sub>0</sub>*(1+sin(2*&pi;*f*t+&Phi;))
+	</math>
+	You can calculate the pressure entry on a period choosing the Pressure input:
+	<P>
+	<math>P<sub>0</sub>:<input type="text" name="ucfrom" class="ucdcinput" id="ucfrom" onkeyup="ucDCUpdateResult(0);" autofocus=""> Pa
+	</P>
+	<CENTER><TABLE BORDER=2>
+	<tr>
+	<th>time(s)</th>
+	<th>P(Pa)</th>
+	</tr>
+	</table>
+	<script>
+    tableCreate(200, 2);
+	</script>
+	</p>
+</div>
 </body>
 </html>
